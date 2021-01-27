@@ -69,6 +69,7 @@ app.get('/', (request, response) => {
     if (request.session.loggedin) {
         response.send('Welcome back, ' + request.session.username + '!');
     } else {
+        console.log("ok so, the redirect works BUT")
         response.send('Please login to view this page!');
     }
     response.end();
