@@ -49,26 +49,23 @@ app.post('/auth', (request, response) => {
             if (password=="1234") {
                     //var userName = results.rows[0].name;
                     var userName = email;
+                    //console.log(request.session);
                     request.session.loggedin = true;
                     request.session.username = userName;
-                    console.log("logINNNNNN")
+                    console.log(request.session);
                     //response.redirect('/');
-               } else {
-                    response.send('Incorrect Username and/or Password!');
-                }
-                response.end();
+               } 
+                
             //);
-    } else {
-        response.send('Please enter Username and Password!');
-        response.end();
     }
+    response.json(request.session);
 });
 
 app.get('/', (request, response) => {
     if (request.session.loggedin) {
-        response.send('Welcome back, ' + request.session.username + '!');
+        response.json('Welcome back, ' + request.session.username + '!');
     } else {
-        response.send('Please login to view this page!');
+        response.json('Please login to view this page!');
     }
     response.end();
 });
