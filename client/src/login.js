@@ -29,6 +29,21 @@ const Login = (props) => {
         setLoginCredentials({...loginCredentials , [e.target.name] : e.target.value})
         console.log("we change the said name with said value")
     }
+
+    const checkLogin  =(m)=>{
+        console.log(m);
+        if (m.loggedin) {
+            console.log(m.username);
+            loginCredentials.loggedIn = true;
+            return <Redirect to="/" />
+        }
+        else {
+            console.log("invalid username or password");
+            return (
+                <p>invalid username or password</p>
+        );
+        } 
+    }
     
     const submitForm = (e) =>{
         console.log("tryin to post")
@@ -49,15 +64,15 @@ const Login = (props) => {
         }
         fetch("http://localhost:5000/auth",sendmethod)
         .then((res) => res.json())
-        .then((message) => console.log(message))
+        .then((message) => checkLogin(message))
 
+        console.log("acabo fetch");
+        //if (email === "a@ton.com" && password === "b") {
 
-        if (email === "a@ton.com" && password === "b") {
-
-            console.log(email, password);
-            localStorage.setItem("token","aketeloneto");
-            setLoginCredentials({...loginCredentials , loggedIn : true});
-        }
+        //    console.log(email, password);
+        //    localStorage.setItem("token","aketeloneto");
+        //    setLoginCredentials({...loginCredentials , loggedIn : true});
+        //}
     }
     if (loginCredentials.loggedIn) {
         
