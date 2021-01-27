@@ -43,7 +43,8 @@ const Login = (props) => {
             method: 'POST', 
             body: JSON.stringify(loginCredentials),
             headers:{
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
             }
         }
         fetch("http://localhost:5000/auth",sendmethod)

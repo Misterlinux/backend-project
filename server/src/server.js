@@ -52,7 +52,8 @@ app.post('/auth', (request, response) => {
                     request.session.loggedin = true;
                     request.session.username = userName;
                     console.log("logINNNNNN")
-                    //response.redirect('/');
+                    response.redirect('/');
+                    //response.send('ok so, we just have to redirect')
                } else {
                     response.send('Incorrect Username and/or Password!');
                 }
